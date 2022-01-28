@@ -54,7 +54,7 @@ class User(AbstractBaseUser):
 
 class Urls(models.Model):
     id  =  models.CharField(max_length=100, primary_key=True,unique=True,default=GetPrefixId)
-    url = models.CharField(max_length=100, unique=True)
+    url = models.CharField(max_length=100,)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='urls')
     created_at = models.DateTimeField(auto_now_add=True)
     visits  = models.IntegerField(default=0)

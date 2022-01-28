@@ -1,10 +1,12 @@
 from functools import partial
 from django.shortcuts import render
-from .models import User
+from .models import User,Urls
 from .serializers import RegistrationSerializer,LoginSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.filters import OrderingFilter, SearchFilter
+from django.shortcuts import redirect
+from rest_framework.decorators import api_view, permission_classes
 
 
 from rest_framework import generics
@@ -51,3 +53,14 @@ class UrlList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def urlRedirect(request,token):
+    longUrl = Urls.objects.get(id=token)
+    longUrl.visits += 1
+    longUrl.save()
+    url  = longUrl.url
+    if url.startswith('https://') or  url.startswith('http://'):
+        return redirect(url)
+    return redirect("https://"+longUrl.url)
