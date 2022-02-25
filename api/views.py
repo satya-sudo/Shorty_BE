@@ -1,7 +1,7 @@
 from functools import partial
 from django.shortcuts import render
 from .models import User,Urls
-from .serializers import RegistrationSerializer,LoginSerializer
+from .serializers import RegistrationSerializer,LoginSerializer,StatsSerializer
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.filters import OrderingFilter, SearchFilter
@@ -64,3 +64,31 @@ def urlRedirect(request,token):
     if url.startswith('https://') or  url.startswith('http://'):
         return redirect(url)
     return redirect("https://"+longUrl.url)
+
+
+class GetStatsApi(generics.GenericAPIView):
+    serializer_class = StatsSerializer
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        urls = self.request.user.urls.all()
+        tags_dict  = {}
+
+        for url in urls:
+            try:
+                tags_dict[url.tag] += url.visits
+            except:
+                tags_dict[url.tag] = url.visits
+
+        tags = []
+        visits = []
+        for url in tags_dict:
+            tags.append(url)
+            visits.append(tags_dict[url])
+
+        data = {
+            'total_urls': urls.count(),
+            'total_visits': sum(url.visits for url in urls),
+            'tags': tags,
+            'visits': visits
+        }
+        return Response(data)

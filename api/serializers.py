@@ -50,3 +50,11 @@ class UrlSerializer(serializers.ModelSerializer):
         model =  Urls
         fields = ('id', 'url','created_at','tag')
         extra_kwargs = {'id': {'read_only': True},'created_at':{'read_only': True}}
+
+
+class StatsSerializer(serializers.Serializer):
+    total_urls = serializers.IntegerField(read_only=True)
+    total_visits = serializers.IntegerField(read_only=True)
+    tags = serializers.ListField(child=serializers.CharField(max_length=20), read_only=True)
+    visits = serializers.ListField(child=serializers.IntegerField(), read_only=True)
+   
