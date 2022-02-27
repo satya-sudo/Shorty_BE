@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-69yo&5z$ssma_h1%0=mk=p*4=x-^&j0lhkx0^rugi-*(6i-!zx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shty1.herokuapp.com'']
 
 AUTH_USER_MODEL = 'api.User'
 
