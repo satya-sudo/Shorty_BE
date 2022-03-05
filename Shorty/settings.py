@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-69yo&5z$ssma_h1%0=mk=p*4=x-^&j0lhkx0^rugi-*(6i-!zx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['shty1.herokuapp.com']
+# ALLOWED_HOSTS = ['shty1.herokuapp.com']
+
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'api.User'
 
@@ -174,10 +176,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000','https://shorty-fe.vercel.app','https://shorty-fe-git-main-satya-sudo.vercel.app',
-    'https://shorty-fe-bspqgl2ss-satya-sudo.vercel.app'
-] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    'http://localhost:3000','https://shorty-fe.vercel.app','https://shorty-fe-git-main-satya-sudo.vercel.app',
+    'http://localhost:3000',
+    'https://shorty-fe.vercel.app',
+    'https://shorty-fe-git-main-satya-sudo.vercel.app',
     'https://shorty-fe-bspqgl2ss-satya-sudo.vercel.app'
 ]
