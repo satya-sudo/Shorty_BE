@@ -176,8 +176,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 # CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://shorty-fe.vercel.app',
-    'https://shorty-fe-git-main-satya-sudo.vercel.app',
-    'https://shorty-fe-bspqgl2ss-satya-sudo.vercel.app'
+    '*'
 ]
