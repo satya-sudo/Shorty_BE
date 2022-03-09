@@ -6,10 +6,12 @@ import  string
 import random
 import datetime
 
+base_url =  "shty1.herokuapp.com/api/a/"
+
 def GetPrefixId():
     res = ''.join(random.choices(string.ascii_uppercase + string.digits, k=4))  # generate 4 length random string
     x = datetime.datetime.now()
-    randomStr = f'{x.strftime("%M")}{res}'
+    randomStr = base_url + f'{x.strftime("%M")}{res}' + "/"
     return randomStr
 
 import uuid
